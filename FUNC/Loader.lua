@@ -24,6 +24,9 @@ end
 
 if scriptLOAD then
     if Bool == true then
-         loadstring(game:HttpGet(scriptMulti, true))()
+        warn(GameName)
+        loadstring(game:HttpGet(scriptMulti, true))()
+    else
+        warn("Couldnt load script")
     end
 end
