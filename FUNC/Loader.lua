@@ -4,12 +4,12 @@ local Game = game.GameId
 local GameName = game:GetService("MarketplaceService"):GetProductInfo(Place).Name
 
 local scripts = {
-    [2474168535] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/refs/heads/main/FUNC/Games/WB.lua",
+    [2474168535] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/main/FUNC/Games/WB.lua",
     [4924922222] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/refs/heads/main/FUNC/Games/BHA.lua"
 }
 
 local scriptsMulti = {
-    [4924922222] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/refs/heads/main/FUNC/Games/BHM.lua"
+    [4924922222] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/main/FUNC/Games/BHM.lua"
 }
 
 local scriptURL = scripts[Place] or scripts[Game]
@@ -24,6 +24,6 @@ end
 
 if scriptLOAD then
     if Bool == true then
-        [4924922222] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/refs/heads/main/FUNC/Games/BHM.lua"
+        [4924922222] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/main/FUNC/Games/BHM.lua"
     end
 end
