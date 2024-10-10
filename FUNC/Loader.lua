@@ -1,4 +1,4 @@
-local Bool = false
+local BHMUSIC = false
 local Place = game.PlaceId
 local Game = game.GameId
 local GameName = game:GetService("MarketplaceService"):GetProductInfo(Place).Name
@@ -23,7 +23,7 @@ else
 end
 
 if scriptLOAD then
-    if Bool == true then
+    if BHMUSIC == true then
         warn(GameName)
         loadstring(game:HttpGet(scriptMulti, true))()
     else
