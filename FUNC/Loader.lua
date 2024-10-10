@@ -1,4 +1,4 @@
-local Bool = nil
+local Bool = false
 local Place = game.PlaceId
 local Game = game.GameId
 local GameName = game:GetService("MarketplaceService"):GetProductInfo(Place).Name
