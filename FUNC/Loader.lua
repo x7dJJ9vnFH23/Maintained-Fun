@@ -3,7 +3,7 @@ local Game = game.GameId
 local GameName = game:GetService("MarketplaceService"):GetProductInfo(Place).Name
 
 local scripts = {
-    [2474168535] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/refs/heads/main/FUNC/Games/WB"
+    [2474168535] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/refs/heads/main/FUNC/Games/WB.lua"
 }
 
 local scriptURL = scripts[Place] or scripts[Game]
