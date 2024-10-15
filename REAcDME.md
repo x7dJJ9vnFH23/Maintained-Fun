@@ -1,2 +1,0 @@
-# Maintained-Fun
-Giggles
