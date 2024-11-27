@@ -946,6 +946,10 @@ local function main()
 		if presentClasses["Model"] or presentClasses["Part"] or presentClasses["MeshPart"] then
 			context:AddRegistered("COPY_CFRAME")
 		end
+
+		if presentClasses["Player"] then
+			context:AddRegistered("COPY_PLAYER")
+		end
 		
 		if presentClasses["Tween"] then context:AddRegistered("PLAY_TWEEN") end
 		if presentClasses["Animation"] then
@@ -1212,7 +1216,7 @@ local function main()
 			end
 		end})
 
-		context:Register("COPY_CFRAME",{Name = "Copy CFrame/Position", IconMap = Explorer.MiscIcons, Icon = "3", OnClick = function()
+		context:Register("COPY_CFRAME",{Name = "Copy CFrame/Position", IconMap = Explorer.MiscIcons, Icon = "Cut", OnClick = function()
 			local sList = selection.List
 
         		for i = 1, #sList do
@@ -1227,6 +1231,18 @@ local function main()
                         				setclipboard(tostring(v.CFrame))
                     				end
                 			end
+            			end
+        		end
+		end})
+
+		context:Register("COPY_PLAYER",{Name = "Copy Character CFrame", IconMap = Explorer.MiscIcons, Icon = "Cut", OnClick = function()
+			local sList = selection.List
+        		for i = 1, #sList do
+                                local node = sList[i]
+				local Obj = node.Obj
+            			if Obj:IsA("Player") then
+				local CF = Obj.Character
+                			setclipboard(tostring(CF.HumanoidRootPart.CFrame))
             			end
         		end
 		end})
