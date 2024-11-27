@@ -1211,7 +1211,7 @@ local function main()
 		context:Register("COPY_CFRAME",{Name = "Copy CFrame/Position", IconMap = Explorer.MiscIcons, Icon = "1", OnClick = function()
 			local sList = selection.List
 
-        		ffor i = 1, #sList do
+        		for i = 1, #sList do
                                 local node = sList[i]
 				local Obj = node.Obj
             			if Obj:IsA("Part") or Obj:IsA("MeshPart") then
