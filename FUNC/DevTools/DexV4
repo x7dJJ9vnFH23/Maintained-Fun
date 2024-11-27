@@ -1212,7 +1212,9 @@ local function main()
 			local sList = selection.List
        			local Obj = node.Obj
 
-        		if #sList == 1 then
+        		for i = 1, #sList do
+				local node = sList[i]
+				local Obj = node.Obj
             			if Obj:IsA("Part") or Obj:IsA("MeshPart") then
                 			setclipboard(Obj.CFrame)
            			elseif Obj:IsA("Model") then
