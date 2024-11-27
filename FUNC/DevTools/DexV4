@@ -11345,20 +11345,17 @@ Main = (function()
 		local cptsOnMouseClick = nil
 		Main.CreateApp({Name = "Click Part To Select", IconMap = Main.LargeIcons, Icon = 6, OnClick = function(callback)
 			if callback then
-				local mouse = game:GetService("UserInputService")
-				cptsOnMouseClick = mouse.InputBegan:Connect(function(input, isProcessed)
-				if isProcessed and input.UserInputType == Enum.UserInputType.Touch then
+				local mouse = Main.Mouse
+				cptsOnMouseClick = mouse.Button1Down:Connect(function()
 					pcall(function()
-						local Position = input.Position
-						local Camera = workspace.CurrentCamera
-						local Ray = Camera:ScreenPointToRay(Position.X, Position.Y)
-						if workspace:FindPartOnRayWithIgnoreList(Ray, {Camera}) and nodes[object] then
+						local object = mouse.Target
+						if nodes[object] then
 							selection:Set(nodes[object])
 							Explorer.ViewNode(nodes[object])
 						end
 					end)
 				end)
-			elseif cptsOnMouseClick ~= nil then cptsOnMouseClick:Disconnect() cptsOnMouseClick = nil end end
+			else if cptsOnMouseClick ~= nil then cptsOnMouseClick:Disconnect() cptsOnMouseClick = nil end end
 		end})
 		
 		Lib.ShowGui(gui)
