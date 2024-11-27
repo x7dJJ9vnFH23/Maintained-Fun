@@ -1,15 +1,3 @@
---[[
-	github: https://github.com/LorekeeperZinnia/Dex
-	
-	New Dex
-	Final Version
-	Developed by Moon
-	Modified for Infinite Yield
-	
-	Dex is a debugging suite designed to help the user debug games and find any potential vulnerabilities.
-]]
-
-	
 
 local cloneref = cloneref or (function(...) return ... end)
 local getnilinstances = getnilinstances or (function() return {} end)
@@ -34,80 +22,27 @@ Explorer = function()
 
 -- Common Locals
 
-local Decompile do
-	local Success, Decompile_Source = pcall(function()
-		return game:HttpGet("https://raw.githubusercontent.com/w-a-e/Advanced-Decompiler-V3/main/init.lua", true)
-	end)
-	
-	if Success then
-		local CONSTANTS = [[
-local ENABLED_REMARKS = {
-	NATIVE_REMARK = true,
-	INLINE_REMARK = true
-}
+local API = "https://decompiler.ashore.rip/";
 
-local DECOMPILER_TIMEOUT = 10
+local Decompile = function(Script)
+    local ScriptBytecode = getscriptbytecode(Script);
 
-local READER_FLOAT_PRECISION = 7 -- up to 99
-local SHOW_INSTRUCTION_LINES = false
-local SHOW_REFERENCES = true
-local SHOW_OPERATION_NAMES = false
-local SHOW_MISC_OPERATIONS = false
-local LIST_USED_GLOBALS = true
-local RETURN_ELAPSED_TIME = false]]
-		
-		xpcall(function()
-			return loadstring(
-				string.gsub(
-					string.gsub(
-						Decompile_Source, "return %(x %% 2^32%) // %(2^disp%)", "return math.floor((x %% 2^32) / (2^disp))", 1
-					), ";;CONSTANTS HERE;;", CONSTANTS
-				), "Advanced-Decompiler-V3"
-			)()
-		end, warn)
-		
-		-- local HttpService = service.HttpService
-		
-		local _ENV = (getgenv or getrenv or getfenv)()
-		Decompile = _ENV.decompile
-		
-		--[[local request = request or http_request or (syn and syn.request)
-		
-		local cleanScript = function(ucScript, cUrl)
-			local Url = (cUrl or "http://localhost:5000/fix_script")
-			
-			local result = request({
-				Url = Url,
-				Method = "POST",
-				Headers = { ["Content-Type"] = "application/json" },
-				Body = HttpService:JSONEncode({ script = ucScript })
-			})
-			
-			return (result.Success and result.fixed_script) or nil
-		end
-		
-		local BetterDecompiler = function(Source, Enabled, cUrl)
-			local Success, result = pcall(function()
-				return Decompile(Source)
-			end)
-			
-			if Success and result then
-				if Enabled then
-					local _Success, _result = pcall(cleanScript, Source, cUrl)
-					
-					if _Success and _result then
-						return _result
-					end
-				end
-				return result
-			end
-		end
-		
-		_ENV.decompile = function(Source)
-			return BetterDecompiler(Source, true)
-		end]]
-	end
-end
+    if ScriptBytecode then
+        local Output = request({
+            Url = `{API}decompile`;
+            Method = "POST";
+            Body = ScriptBytecode;
+        });
+      
+        if Output.StatusCode == 200 then
+            return Output.Body;
+        end;
+
+        return `Failed to decompile bytecode\n{ScriptBytecode}`;
+    end;
+end;
+
+getgenv().decompile = Decompile;
 
 local Main,Lib,Apps,Settings -- Main Containers
 local Explorer, Properties, ScriptViewer, Notebook -- Major Apps
@@ -4294,7 +4229,7 @@ local function main()
 	
 	ScriptViewer.ViewScript = function(scr)
 		local success, source = pcall(decompile or function() end, scr)
-		if not success or not source then source, PreviousScr = "-- DEX - Source failed to decompile", nil else PreviousScr = scr end
+		if not success or not source then source, PreviousScr = "-- MEDAL - Source failed to decompile", nil else PreviousScr = scr end
 		codeFrame:SetText(source:gsub("\0", "\\0"))
 		window:Show()
 	end
@@ -11083,8 +11018,8 @@ Main = (function()
 			{2,"Frame",{Active=true,BackgroundColor3=Color3.new(0.20392157137394,0.20392157137394,0.20392157137394),BorderSizePixel=0,Name="Main",Parent={1},Position=UDim2.new(0.5,-175,0.5,-100),Size=UDim2.new(0,350,0,200),}},
 			{3,"Frame",{BackgroundColor3=Color3.new(0.17647059261799,0.17647059261799,0.17647059261799),BorderSizePixel=0,ClipsDescendants=true,Name="Holder",Parent={2},Size=UDim2.new(1,0,1,0),}},
 			{4,"UIGradient",{Parent={3},Rotation=30,Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,1,0),NumberSequenceKeypoint.new(1,1,0),}),}},
-			{5,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=4,Name="Title",Parent={3},Position=UDim2.new(0,-190,0,15),Size=UDim2.new(0,100,0,50),Text="Dex",TextColor3=Color3.new(1,1,1),TextSize=50,TextTransparency=1,}},
-			{6,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Desc",Parent={3},Position=UDim2.new(0,-230,0,60),Size=UDim2.new(0,180,0,25),Text="Ultimate Debugging Suite",TextColor3=Color3.new(1,1,1),TextSize=18,TextTransparency=1,}},
+			{5,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=4,Name="Title",Parent={3},Position=UDim2.new(0,-190,0,15),Size=UDim2.new(0,100,0,50),Text="Dex | Medal",TextColor3=Color3.new(1,1,1),TextSize=50,TextTransparency=1,}},
+			{6,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Desc",Parent={3},Position=UDim2.new(0,-230,0,60),Size=UDim2.new(0,180,0,25),Text="Ultimate Debugging and Decompiling Suite",TextColor3=Color3.new(1,1,1),TextSize=18,TextTransparency=1,}},
 			{7,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="StatusText",Parent={3},Position=UDim2.new(0,20,0,110),Size=UDim2.new(0,180,0,25),Text="Fetching API",TextColor3=Color3.new(1,1,1),TextSize=14,TextTransparency=1,}},
 			{8,"Frame",{BackgroundColor3=Color3.new(0.20392157137394,0.20392157137394,0.20392157137394),BorderSizePixel=0,Name="ProgressBar",Parent={3},Position=UDim2.new(0,110,0,145),Size=UDim2.new(0,0,0,4),}},
 			{9,"Frame",{BackgroundColor3=Color3.new(0.2392156869173,0.56078433990479,0.86274510622025),BorderSizePixel=0,Name="Bar",Parent={8},Size=UDim2.new(0,0,1,0),}},
