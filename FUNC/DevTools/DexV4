@@ -1206,6 +1206,19 @@ local function main()
 				end
 			end
 		end})
+
+		context:Register("COPY_CFRAME",{Name = "Copy CFrame/Position", IconMap = Explorer.MiscIcons, Icon = "1", OnClick = function()
+			local sList = selection.List
+			local Obj = node.Obj
+
+			if #sList == 1 then
+				for i, v in pairs(Obj:GetDescendants()) do
+					if v:IsA("Part") or v:IsA("MeshPart") then
+						setclipboard(v.CFrame)
+					end
+				end
+			end
+		end})
 		
 		local OldAnimation
 		context:Register("PLAY_TWEEN",{Name = "Play Tween", IconMap = Explorer.MiscIcons, Icon = "Play", OnClick = function()
