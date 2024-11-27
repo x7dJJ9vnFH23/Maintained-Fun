@@ -938,11 +938,15 @@ local function main()
 		
 		context:QueueDivider()
 		
-		if presentClasses["BasePart"] or presentClasses["Model"] or presentClasses["Part"] or presentClasses["MeshPart"] then
+		if presentClasses["BasePart"] or presentClasses["Model"] then
 			context:AddRegistered("TELEPORT_TO")
-			context:AddRegistered("COPY_CFRAME")
 			context:AddRegistered("VIEW_OBJECT")
 		end
+
+		if presentClasses["Model"] or presentClasses["Part"] or presentClasses["MeshPart"] then
+			context:AddRegistered("COPY_CFRAME")
+		end
+		
 		if presentClasses["Tween"] then context:AddRegistered("PLAY_TWEEN") end
 		if presentClasses["Animation"] then
 			context:AddRegistered("LOAD_ANIMATION")
@@ -1220,7 +1224,7 @@ local function main()
                 		local descendants = Obj:GetDescendants()
                 			for i, v in pairs(descendants) do
                     				if v:IsA("Part") or v:IsA("MeshPart") then
-                        				setclipboard(v.CFrame)
+                        				setclipboard(tostring(v.CFrame))
                     				end
                 			end
             			end
