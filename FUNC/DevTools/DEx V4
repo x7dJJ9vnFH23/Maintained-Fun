@@ -11338,14 +11338,14 @@ Main = (function()
 		
 		Main.CreateApp({Name = "Script Viewer", IconMap = Main.LargeIcons, Icon = "Script_Viewer", Window = ScriptViewer.Window})
 
-		Main.CreateApp({Name = "Delete Adonis", IconMap = Main.LargeIcons, Icon = "Script_Viewer", OnClick = function(callback)
+		Main.CreateApp({Name = "Delete Adonis", IconMap = Main.LargeIcons, Icon = "AntiCheat_Checker", OnClick = function(callback)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/Pixeluted/adoniscries/main/Source.lua", true))()
 		end})
 
 -- UNEDITED
 		
 		local cptsOnMouseClick = nil
-		Main.CreateApp({Name = "Click part to select", IconMap = Main.LargeIcons, Icon = 6, OnClick = function(callback)
+		Main.CreateApp({Name = "Click Part To Select", IconMap = Main.LargeIcons, Icon = 6, OnClick = function(callback)
 			if callback then
 				local mouse = Main.Mouse
 				cptsOnMouseClick = mouse.Button1Down:Connect(function()
@@ -11437,7 +11437,7 @@ Main = (function()
 		})
 		Main.LargeIcons = Lib.IconMap.new("rbxassetid://6579106223",256,256,32,32)
 		Main.LargeIcons:SetDict({
-			Explorer = 0, Properties = 1, Script_Viewer = 2,
+			Explorer = 0, Properties = 1, Script_Viewer = 2, AntiCheat_Checker = 3
 		})
 		
 		-- Fetch version if needed
