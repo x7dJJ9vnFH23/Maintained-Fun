@@ -1216,7 +1216,7 @@ local function main()
 			end
 		end})
 
-		context:Register("COPY_CFRAME",{Name = "Copy CFrame/Position", IconMap = Explorer.MiscIcons, Icon = "Cut", OnClick = function()
+		context:Register("COPY_CFRAME",{Name = "Copy CFrame", IconMap = Explorer.MiscIcons, Icon = "Copy", OnClick = function()
 			local sList = selection.List
 
         		for i = 1, #sList do
@@ -1235,7 +1235,7 @@ local function main()
         		end
 		end})
 
-		context:Register("COPY_PLAYER",{Name = "Copy Character CFrame", IconMap = Explorer.MiscIcons, Icon = "Cut", OnClick = function()
+		context:Register("COPY_PLAYER",{Name = "Copy Character CFrame", IconMap = Explorer.MiscIcons, Icon = "Copy", OnClick = function()
 			local sList = selection.List
         		for i = 1, #sList do
                                 local node = sList[i]
