@@ -1394,15 +1394,15 @@ local function main()
         		end
 		end})
 
-		context:Register("GET_REFERENCES",{Name = "Get Lua References", IconMap = Explorer.ClassIcons, Icon = 34, OnClick = function()
+		context:Register("GET_REFERENCES",{Name = "Get Lua References (-)", IconMap = Explorer.ClassIcons, Icon = 34, OnClick = function()
 			
 		end})
 		
-		context:Register("SAVE_INST",{Name = "Save to File", IconMap = Explorer.MiscIcons, Icon = "Save", OnClick = function()
+		context:Register("SAVE_INST",{Name = "Save to File (-)", IconMap = Explorer.MiscIcons, Icon = "Save", OnClick = function()
 			
 		end})
 		
-		--[[context:Register("VIEW_CONNECTIONS",{Name = "View Connections", OnClick = function()
+		--[[context:Register("VIEW_CONNECTIONS",{Name = "View Connections (-)", OnClick = function()
 			
 		end})]]
 		
