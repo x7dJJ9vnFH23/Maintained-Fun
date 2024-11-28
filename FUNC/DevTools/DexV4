@@ -1402,9 +1402,18 @@ local function main()
 			
 		end})
 		
-		--[[context:Register("VIEW_CONNECTIONS",{Name = "View Connections (-)", OnClick = function()
-			
-		end})]]
+		context:Register("VIEW_CONNECTIONS",{Name = "View Connections", OnClick = function()
+			local sList = selection.List
+        		for i = 1, #sList do
+                                local node = sList[i]
+				local Obj = node.Obj
+            			if Obj then
+					for i, connection in ipairs(getconnections(Obj)) do
+   						 setclipboard(connection.Function)
+					end
+            			end
+        		end
+		end})
 		
 		context:Register("VIEW_API",{Name = "View API Page", IconMap = Explorer.MiscIcons, Icon = "Reference", OnClick = function()
  			local sList = selection.List
