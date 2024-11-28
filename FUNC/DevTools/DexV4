@@ -1,4 +1,4 @@
-
+	
 local cloneref = cloneref or (function(...) return ... end)
 local getnilinstances = getnilinstances or (function() return {} end)
 
@@ -1407,7 +1407,14 @@ local function main()
 		end})]]
 		
 		context:Register("VIEW_API",{Name = "View API Page", IconMap = Explorer.MiscIcons, Icon = "Reference", OnClick = function()
-			
+ 			local sList = selection.List
+        		for i = 1, #sList do
+                                local node = sList[i]
+				local Obj = node.Obj
+            			if Obj then
+                			setclipboard("https://create.roblox.com/docs/reference/engine/classes/" .. Obj.ClassName)
+            			end
+        		end
 		end})
 		
 		context:Register("VIEW_OBJECT",{Name = "View Object (Right click to reset)", IconMap = Explorer.ClassIcons, Icon = 5, OnClick = function()
@@ -1450,16 +1457,14 @@ local function main()
 		end})
 		
 		context:Register("SAVE_BYTECODE",{Name = "Save ScriptBytecode in Files", IconMap = Explorer.MiscIcons, Icon = "Save", OnClick = function()
-			for _,v in next, selection.List do
-				if v.Obj:IsA("LuaSourceContainer") then
-					local success, bytecode = pcall(getscriptbytecode, scr)
-					if success and type(bytecode) == "string" then
-						local Name = ("%i.Script.%s.txt"):format(game.PlaceId, scr.Name)
-						writefile(Name, bytecode)
-						task.wait(0.2)
-					end
-				end
-			end
+		local sList = selection.List
+        		for i = 1, #sList do
+                                local node = sList[i]
+				local Obj = node.Obj
+            			if Obj:IsA("ModuleScript") or Obj:IsA("LocalScript") then
+                			writefile(Obj.Name .. ".lua", getscriptbytecode(Obj))
+            			end
+        		end
 		end})
 		
 		context:Register("SELECT_CHARACTER",{Name = "Select Character", IconMap = Explorer.ClassIcons, Icon = 9, OnClick = function()
