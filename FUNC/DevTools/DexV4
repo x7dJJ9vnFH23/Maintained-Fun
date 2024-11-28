@@ -1,4 +1,5 @@
-	
+-- PatchNote 1: Added FUNs for registers, updated some FUNs.
+
 local cloneref = cloneref or (function(...) return ... end)
 local getnilinstances = getnilinstances or (function() return {} end)
 
