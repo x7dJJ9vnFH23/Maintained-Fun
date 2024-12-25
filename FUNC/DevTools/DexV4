@@ -23,7 +23,6 @@ Explorer = function()
 
 -- Common Locals
 
-
 local API = "https://decompiler.ashore.rip/";
 
 local Decompile = function(Script)
@@ -40,7 +39,7 @@ local Decompile = function(Script)
             return Output.Body;
         end;
 
-        return `Failed to decompile bytecode\n{ScriptBytecode}`;
+        return `unsuccessful. Body: {Output.Body}, status code: {Output.StatusCode}`;
     end;
 end;
 
