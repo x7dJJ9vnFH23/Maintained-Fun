@@ -24,27 +24,25 @@ Explorer = function()
 -- Common Locals
 
 
-local Decompile = function(script: LocalScript | ModuleScript | Script)
-    if script:IsA("Script") or script:IsA("LocalScript") then
-        assert(script.RunContext == Enum.RunContext.Client, "script cannot decompile.")
-    end
-    local Headers = {
-        ['Content-Type'] = "application/json"
-    }
-    local Body = {
-        ['bytecode'] = getscriptbytecode(script)
-    }
-    local Method = "POST"
-    local Url = "https://getatlantis.xyz/lxzp/decompile"
-    local result = request({
-        Url = Url,
-        Method = Method,
-        Body = game:GetService("HttpService"):JSONEncode(Body)
-    })
-    local decompiled = result and result.Body;
-    local code = result and result.StatusCode;
-    return code == 200 and decompiled or string.format("-- Failed to decompile ! (status code: %s ; result: %s)", code, decompiled);
-end
+local API = "https://decompiler.ashore.rip/";
+
+local Decompile = function(Script)
+    local ScriptBytecode = getscriptbytecode(Script);
+
+    if ScriptBytecode then
+        local Output = request({
+            Url = API .. "decompile";
+            Method = "POST";
+            Body = ScriptBytecode;
+        });
+      
+        if Output.StatusCode == 200 then
+            return Output.Body;
+        end;
+
+        return `Failed to decompile bytecode\n{ScriptBytecode}`;
+    end;
+end;
 
 getgenv().decompile = Decompile;
 
