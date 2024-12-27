@@ -14,6 +14,7 @@ Toggle.BackgroundTransparency = 0.4
 Toggle.Position = UDim2.new(0, 140, 0, 100)
 Toggle.Size = UDim2.new(0, 50, 0, 50)
 Toggle.Image = "rbxassetid://80054691335798"
+Toggle.Draggable = true
 Toggle.ScaleType = Enum.ScaleType.Fit
 
 
@@ -26,32 +27,3 @@ end)
 local Corner = Instance.new("UICorner")
 Corner.Name = "Corner"
 Corner.Parent = Toggle
-
-local userInputService = game:GetService("UserInputService")
-local isDragging = false
-local dragStart, startFramePosition
-
-Toggle.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-        isDragging = true
-        dragStart = input.Position
-        startFramePosition = Toggle.Position
-        userInputService.InputEnded:Connect(function(endInput)
-            if endInput.UserInputType == Enum.UserInputType.MouseButton1 or endInput.UserInputType == Enum.UserInputType.Touch then
-                isDragging = false
-            end
-        end)
-    end
-end)
-
-Toggle.InputChanged:Connect(function(input)
-    if isDragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
-        local delta = input.Position - dragStart
-        Toggle.Position = UDim2.new(
-            startFramePosition.X.Scale,
-            startFramePosition.X.Offset + delta.X,
-            startFramePosition.Y.Scale,
-            startFramePosition.Y.Offset + delta.Y
-        )
-    end
-end)
