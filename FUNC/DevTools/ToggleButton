@@ -19,7 +19,7 @@ Toggle.ScaleType = Enum.ScaleType.Fit
 
 Toggle.MouseButton1Click:connect(function()
     game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.RightControl, false, game)
-    task.wait(0.1)
+    wait(0.1)
     game:GetService("VirtualInputManager"):SendKeyEvent(false, Enum.KeyCode.RightControl, false, game)
 end)
 
