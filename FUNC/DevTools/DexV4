@@ -23,27 +23,10 @@ Explorer = function()
 
 -- Common Locals
 
-local API = "https://decompiler.ashore.rip/";
-
-local Decompile = function(Script)
-    local ScriptBytecode = getscriptbytecode(Script);
-
-    if ScriptBytecode then
-        local Output = request({
-            Url = API .. "decompile";
-            Method = "POST";
-            Body = ScriptBytecode;
-        });
-      
-        if Output.StatusCode == 200 then
-            return Output.Body;
-        end;
-
-        return `unsuccessful. Body: {Output.Body}, status code: {Output.StatusCode}`;
-    end;
-end;
-
-getgenv().decompile = Decompile;
+getgenv().HideUpvalues = false
+getgenv().HideFunctionsNames = false
+getgenv().HideFunctionsLine = true
+loadstring(game:HttpGet("https://raw.githubusercontent.com/TrapstarKS/Signal/refs/heads/main/Decompile.lua"))()
 
 local Main,Lib,Apps,Settings -- Main Containers
 local Explorer, Properties, ScriptViewer, Notebook -- Major Apps
