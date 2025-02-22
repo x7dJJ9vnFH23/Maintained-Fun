@@ -13,7 +13,6 @@ local scripts = {
 local scriptURL = scripts[Place] or scripts[Game]
 
 if scriptURL then
-    warn(GameName)
     loadstring(game:HttpGet(scriptURL, true))()
 else
     warn("No script found for this game.")
