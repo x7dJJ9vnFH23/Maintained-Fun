@@ -7,7 +7,7 @@ local Players = game:GetService("Players")
 local CoreGui = game:GetService("CoreGui")
 local Highlight =
 	loadstring(
-		game:HttpGet("https://github.com/exxtremestuffs/SimpleSpySource/raw/master/highlight.lua")
+		game:HttpGet("https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/refs/heads/main/FUNC/DevTools/REIDE.lua")
 	)()
 
 ---- GENERATED (kinda sorta mostly) BY GUI to LUA ----
@@ -78,7 +78,7 @@ end)
 
 LeftPanel.Name = "LeftPanel"
 LeftPanel.Parent = Background
-LeftPanel.BackgroundColor3 = Color3.fromRGB(53, 52, 55)
+LeftPanel.BackgroundColor3 = Color3.fromRGB(31, 22, 49)
 LeftPanel.BorderSizePixel = 0
 LeftPanel.Position = UDim2.new(0, 0, 0, 19)
 LeftPanel.Size = UDim2.new(0, 131, 0, 249)
@@ -141,7 +141,7 @@ Button.TextSize = 14
 
 RightPanel.Name = "RightPanel"
 RightPanel.Parent = Background
-RightPanel.BackgroundColor3 = Color3.fromRGB(37, 36, 38)
+RightPanel.BackgroundColor3 = Color3.fromRGB(24, 17, 38)
 RightPanel.BorderSizePixel = 0
 RightPanel.Position = UDim2.new(0, 131, 0, 19)
 RightPanel.Size = UDim2.new(0, 319, 0, 249)
@@ -211,7 +211,7 @@ Button_2.TextSize = 14
 
 TopBar.Name = "TopBar"
 TopBar.Parent = Background
-TopBar.BackgroundColor3 = Color3.fromRGB(37, 35, 38)
+TopBar.BackgroundColor3 = Color3.fromRGB(24, 17, 38)
 TopBar.BorderSizePixel = 0
 TopBar.Size = UDim2.new(0, 450, 0, 19)
 
@@ -230,7 +230,7 @@ Simple.TextXAlignment = Enum.TextXAlignment.Left
 
 CloseButton.Name = "CloseButton"
 CloseButton.Parent = TopBar
-CloseButton.BackgroundColor3 = Color3.new(0.145098, 0.141176, 0.14902)
+CloseButton.BackgroundColor3 = Color3.fromRGB(24, 17, 38)
 CloseButton.BorderSizePixel = 0
 CloseButton.Position = UDim2.new(1, -19, 0, 0)
 CloseButton.Size = UDim2.new(0, 19, 0, 19)
@@ -248,7 +248,7 @@ ImageLabel.Image = "http://www.roblox.com/asset/?id=5597086202"
 
 MaximizeButton.Name = "MaximizeButton"
 MaximizeButton.Parent = TopBar
-MaximizeButton.BackgroundColor3 = Color3.new(0.145098, 0.141176, 0.14902)
+MaximizeButton.BackgroundColor3 = Color3.fromRGB(24, 17, 38)
 MaximizeButton.BorderSizePixel = 0
 MaximizeButton.Position = UDim2.new(1, -38, 0, 0)
 MaximizeButton.Size = UDim2.new(0, 19, 0, 19)
@@ -266,7 +266,7 @@ ImageLabel_2.Image = "http://www.roblox.com/asset/?id=5597108117"
 
 MinimizeButton.Name = "MinimizeButton"
 MinimizeButton.Parent = TopBar
-MinimizeButton.BackgroundColor3 = Color3.new(0.145098, 0.141176, 0.14902)
+MinimizeButton.BackgroundColor3 = Color3.fromRGB(24, 17, 38)
 MinimizeButton.BorderSizePixel = 0
 MinimizeButton.Position = UDim2.new(1, -57, 0, 0)
 MinimizeButton.Size = UDim2.new(0, 19, 0, 19)
