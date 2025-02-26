@@ -2176,7 +2176,7 @@ if not getgenv().SimpleSpyExecuted then
 			pcall(syn.protect_gui, SimpleSpy2)
 		end
 		bringBackOnResize()
-		SimpleSpy2.Parent = (gethui and gethui()) or (syn and syn.protect_gui and syn.protect_gui(SimpleSpy2)) or CoreGui
+		SimpleSpy2.Parent = (gethui and gethui()) or CoreGui
 		getgenv().SimpleSpyExecuted = true
 		if not Players.LocalPlayer then
 			Players:GetPropertyChangedSignal("LocalPlayer"):Wait()
