@@ -2455,7 +2455,7 @@ end, function()
 end)
 
 newButton("GenerateLoop", function()
-	return "Generates a loop script with\nthe selected remote."
+	return "Generates a loop script with\n\nthe selected remote."
 end, function()
-	setclipboard("While true do\n" .. v2s(selected.Remote.remote) .. "\nend")
+	setclipboard("while true do\n" .. codebox:getString() .. "\nend")
 end)
