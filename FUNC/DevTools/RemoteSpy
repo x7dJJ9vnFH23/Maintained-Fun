@@ -2454,8 +2454,8 @@ end, function()
 	end
 end)
 
-newButton("Generate Loop", function()
-	return "Generates a loop script with the selected remote."
+newButton("GenerateLoop", function()
+	return "Generates a loop script with\nthe selected remote."
 end, function()
 	setclipboard("While true do\n" .. v2s(selected.Remote.remote) .. "\nend")
 end)
