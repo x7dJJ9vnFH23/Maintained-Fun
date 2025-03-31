@@ -4396,21 +4396,7 @@ local function main()
 		save.TextColor3 = Color3.new(1,1,1)
 		
 		save.MouseButton1Click:Connect(function()
-
-			local sList = selection.List
-        		for i = 1, #sList do
-                                local node = sList[i]
-				local Obj = node.Obj
-            			if Obj:IsA("RemoteEvent") then
-                			local source = codeFrame:GetText()
-					local filename = "Script.".. Obj.Name ..".txt"
-
-					env.writefile(filename, source)
-					if env.movefileas then
-						env.movefileas(filename, ".txt")
-					end
-            			end
-        		end
+			writefile(game.PlaceId .. ".txt", codeFrame:GetText())
 		end)
 		
 		local dumpbtn = Instance.new("TextButton",window.GuiElems.Content)
