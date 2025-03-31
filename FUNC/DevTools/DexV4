@@ -3345,6 +3345,9 @@ local function main()
 			Properties.SetProp(prop,nil,true)
 			Properties.ShowExplorerProps()
 		end})
+		context:Add({Name = "Copy Path", OnClick = function()
+			setclipboard(prop)
+		end})
 
 		context:Show()
 	end
