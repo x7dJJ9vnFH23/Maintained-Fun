@@ -23,3 +23,10 @@ if scriptURL then
 else
     warn("No script found for this game.")
 end
+
+pcall(function()
+        CoreGui:SetCore("SendNotification",{
+              Title = "Purge", 
+              Text = "Purge is discountined and it won't relieve any more updates"
+        })
+end)
