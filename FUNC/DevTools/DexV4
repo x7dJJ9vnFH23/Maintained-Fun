@@ -2244,6 +2244,18 @@ local function main()
 			BindableRemote = "Fire",
 			BindableFunction = "Invoke",
 		}
+		context:Register("CALL_FUNCTION",{Name = "Call Function", IconMap = Explorer.MiscIcons, Icon = "Play", DisabledIcon = "Empty", OnClick = function()
+			local sList = selection.List
+        		for i = 1, #sList do
+                                local node = sList[i]
+				local Obj = node.Obj
+            			if Obj:IsA("RemoteEvent") then
+                			Obj:FireServer()
+				elseif Obj:IsA("RemoteFunction") then
+					Obj:InvokeServer()
+            			end
+        		end
+		end})
 		context:Register("BLOCK_REMOTE",{Name = "Block From Firing", IconMap = Explorer.MiscIcons, Icon = "Delete", DisabledIcon = "Empty", OnClick = function()
 			local sList = selection.List
 			for i, list in sList do
