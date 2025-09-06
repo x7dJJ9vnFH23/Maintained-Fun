@@ -176,6 +176,7 @@ ui.config = function(getkey, verifykey)
 
     task.spawn(TypeEff)
     task.spawn(Whatever)
+    return Scr
 end
 
 return ui
