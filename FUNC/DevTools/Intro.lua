@@ -11,7 +11,7 @@ blur.Size = 0
 TweenService:Create(blur, TweenInfo.new(0.5), {Size = 24}):Play()
 
 local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
-screenGui.Name = "HadesIntro"
+screenGui.Name = "PurgeIntro"
 screenGui.ResetOnSpawn = false
 screenGui.IgnoreGuiInset = true
 
@@ -61,7 +61,7 @@ task.delay(
 )
 
 
-local word = "Hades Hub"
+local word = "Purge Hub"
 local letters = {}
 
 local function tweenOutAndDestroy()
