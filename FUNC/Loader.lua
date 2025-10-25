@@ -28,8 +28,9 @@ else
 end
 
 pcall(function()
-        CoreGui:SetCore("SendNotification",{
-              Title = "Purge", 
-              Text = "Purge is discountined and it won't relieve any more updates"
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Title = "Purge",
+            Text = "New Blox Fruits Kaitun, get it in our Discord: https://discord.gg/WNFyG8cRUD",
+            Duration = 5
         })
 end)
