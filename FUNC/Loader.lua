@@ -30,7 +30,7 @@ end
 pcall(function()
         game:GetService("StarterGui"):SetCore("SendNotification", {
             Title = "Purge",
-            Text = "New Blox Fruits Kaitun, get it in our Discord: https://discord.gg/WNFyG8cRUD",
+            Text = "Discord: https://discord.gg/WNFyG8cRUD",
             Duration = 5
         })
 end)
