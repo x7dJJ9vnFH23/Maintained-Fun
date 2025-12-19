@@ -29,6 +29,20 @@ else
     warn("No script found for this game.")
 end
 
+local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+
+if hookfunction then
+    hookfunction(game.Players.LocalPlayer.Kick, function(self, message)
+        if message:find("Incorrect key!") then
+            WindUI:Notify({
+                Title = "Purge",
+                Description = "Incorrect key!",
+                Time = 10
+            })
+        end
+    end)
+end
+
 pcall(function()
         game:GetService("StarterGui"):SetCore("SendNotification", {
             Title = "Purge",
