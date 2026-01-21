@@ -4,6 +4,7 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(Place).Nam
 
 local scripts = {
     [2474168535] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/main/FUNC/Games/WB.lua",
+    [96645548064314] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/refs/heads/main/FUNC/Games/CAT.lua",
     [7305309231] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/refs/heads/main/FUNC/Games/TB.lua",
     [112413741511713] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/refs/heads/main/FUNC/Games/MCT.lua",
     [130422569332103] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/refs/heads/main/FUNC/Games/BCB.lua",
@@ -31,12 +32,6 @@ if scriptURL then
     loadstring(game:HttpGet(scriptURL, true))()
 else
     warn("No script found for this game.")
-end
-
-local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
-
-if hookfunction then
-    hookfunction(game.Players.LocalPlayer.Kick, function(...) end)
 end
 
 pcall(function()
