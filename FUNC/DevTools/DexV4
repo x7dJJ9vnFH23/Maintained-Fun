@@ -2093,7 +2093,7 @@ local function main()
 			end
 		end})
 
-		context:Register("CALL_FUNCTION",{Name = "Call Function", IconMap = Explorer.ClassIcons, Icon = 66, OnClick = function()
+		context:Register("CALL_FUNCTION",{Name = "Call Function", IconMap = Explorer.ClassIcons, Icon = 65, OnClick = function()
 			local sList = selection.List
         		for i = 1, #sList do
                                 local node = sList[i]
