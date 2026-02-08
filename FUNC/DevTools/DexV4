@@ -7,6 +7,8 @@
 	Dex++ is a revival of Moon's Dex, made to fulfill Moon's Dex prophecy.
 ]]
 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/refs/heads/main/FUNC/DevTools/DEC"))()
+
 local selection
 local nodes = {}
 
