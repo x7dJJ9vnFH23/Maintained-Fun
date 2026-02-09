@@ -10,6 +10,7 @@ local scripts = {
     [130422569332103] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/refs/heads/main/FUNC/Games/BCB.lua",
     [116495829188952] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/main/FUNC/Games/DR2.lua",
     [70876832253163] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/main/FUNC/Games/DR2.lua",
+    [129315204746120] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/refs/heads/main/FUNC/Games/EQFB.lua",
     [122678592501168] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/main/FUNC/Games/BE.lua",
     [126884695634066] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/main/FUNC/Games/GAG.lua",
     [121864768012064] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/refs/heads/main/FUNC/Games/FT.lua",
@@ -31,13 +32,13 @@ local scriptURL = scripts[Place] or scripts[Game]
 if scriptURL then
     loadstring(game:HttpGet(scriptURL, true))()
 else
-    warn("No script found for this game.")
+    warn("Purge doesnt support this game!")
 end
 
 pcall(function()
         game:GetService("StarterGui"):SetCore("SendNotification", {
             Title = "Purge",
-            Text = "Discord: https://discord.gg/WNFyG8cRUD",
+            Text = "Discord: https://discord.gg/Euza3CCYnR",
             Duration = 5
         })
 end)
