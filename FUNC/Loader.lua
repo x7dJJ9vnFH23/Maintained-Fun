@@ -37,4 +37,4 @@ if scriptURL then
     loadstring(game:HttpGet(scriptURL, true))()
 else
     warn("Purge doesnt support this game!")
-end)
+end
