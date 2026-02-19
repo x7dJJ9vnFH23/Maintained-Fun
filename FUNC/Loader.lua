@@ -37,12 +37,4 @@ if scriptURL then
     loadstring(game:HttpGet(scriptURL, true))()
 else
     warn("Purge doesnt support this game!")
-end
-
-pcall(function()
-        game:GetService("StarterGui"):SetCore("SendNotification", {
-            Title = "Purge",
-            Text = "Discord: https://discord.gg/Euza3CCYnR",
-            Duration = 5
-        })
 end)
