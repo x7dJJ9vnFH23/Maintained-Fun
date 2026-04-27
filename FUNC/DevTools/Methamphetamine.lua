@@ -1,8 +1,3 @@
--- [[ GENERATED WITH InfernoHub/Scriptify STUDIO PLUGIN ]] --
--- Scriptify Version: 1.0
-
---
-
 -- Create objects
 local parent = nil;
 local objects = {
@@ -599,7 +594,7 @@ do -- Set properties
     objects["Instance24"]["BackgroundColor3"] = Color3.new(1, 1, 1);
     objects["Instance24"]["TextColor3"] = Color3.new(1, 1, 1);
     objects["Instance24"]["BorderColor3"] = Color3.new(0, 0, 0);
-    objects["Instance24"]["Text"] = "Ketamine";
+    objects["Instance24"]["Text"] = "Methamphetamine";
     objects["Instance24"]["LayoutOrder"] = 0;
     objects["Instance24"]["TextWrapped"] = true;
     objects["Instance24"]["Rotation"] = 0;
@@ -7944,10 +7939,7 @@ local modules do
     modules[objects["Instance8"]] = function()
         local script = objects["Instance8"];
 return {
-    { "1.0", "Ketamine was released as CSpy (Cherry's Spy), having simple settings, remote & event spy." },
-    { "1.1", "CSpy been renamed to Ketamine, added Script scanner & http spy." },
-    { "1.2", "Fixed lags who been caused by Script scanner & improved it's speed, added ability to hook arguments in remote & event spies." },
-    { "1.3", "Added changelogs, fixed http spy error (not fatal) on bad executors, added memory scanner. <b>Now unavailable pages such as memory scanner not visible on unsupported executors.</b>" }
+    { "1.0", "Methamphetamine was released as CSpy (Cherry's Spy), having simple settings, remote & event spy." }
 }
     end;
 
@@ -7960,7 +7952,7 @@ return function(shared, page)
     local settings = shared.Settings
     
     local codeBox = shared.CodeBox(page.TextBox, shared.UseEnv)
-    codeBox.Text = "Welcome to Ketamine - Event Spy!\n-- Waiting for Bindables --"
+    codeBox.Text = "Welcome to Methamphetamine - Event Spy!\n-- Waiting for Bindables --"
 
     local logExample = page.Logs.Log
     logExample.Parent = page
@@ -11506,7 +11498,7 @@ return function(shared, page)
     local limit = 4
 
     local codeBox = shared.CodeBox(page.Contents.TextBox, shared.UseEnv)
-    codeBox.Text = "Welcome to Ketamine - HTTP Spy!\n-- Waiting for HTTP requests --"
+    codeBox.Text = "Welcome to Methamphetamine - HTTP Spy!\n-- Waiting for HTTP requests --"
 
     local function addLog(realUrl, method, func, headers, body, result)
         realUrl = realUrl:gsub("\\", "/")
@@ -11710,7 +11702,7 @@ return function(shared, page)
     local settings = shared.Settings
     
     local codeBox = shared.CodeBox(page.Contents.To.TextBox, shared.UseEnv)
-    codeBox.Text = "Welcome to Ketamine - Remote Spy!\n-- Waiting for Remotes --"
+    codeBox.Text = "Welcome to Methamphetamine - Remote Spy!\n-- Waiting for Remotes --"
 
     local logExample = page.Contents.To.Logs.Log
     logExample.Parent = page
@@ -12556,7 +12548,7 @@ end]]
                 end
             end
 
-            game:GetService("StarterGui"):SetCore("SendNotification", { Title = "Ketamine", Text = "Unable to generate table\nDo it yourself :trolling:" })
+            game:GetService("StarterGui"):SetCore("SendNotification", { Title = "Methamphetamine", Text = "Unable to generate table\nDo it yourself :trolling:" })
         end
     end)
 
@@ -12572,7 +12564,7 @@ end]]
             end
         end
 
-        game:GetService("StarterGui"):SetCore("SendNotification", { Title = "Ketamine", Text = "Parent table not found" })
+        game:GetService("StarterGui"):SetCore("SendNotification", { Title = "Methamphetamine", Text = "Parent table not found" })
     end)
 
     cons[#cons + 1] = page.Contents.SearchBar.Field.TextBox.FocusLost:Connect(function()
