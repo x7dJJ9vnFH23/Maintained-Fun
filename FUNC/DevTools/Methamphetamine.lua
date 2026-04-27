@@ -12785,17 +12785,17 @@ local function minimize()
     isMinimized = true
     cooldown = true
     
-    tweenService:Create(script.Parent.Main.Overlay, TweenInfo.new(0.5), {BackgroundTransparency = 0}):Play()
+    tweenService:Create(script.Parent.Main.Overlay, TweenInfo.new(0.1), {BackgroundTransparency = 0}):Play()
     
-    task.wait(0.5)
+    task.wait(0.1)
 
     script.Parent.Main.Contents.Visible = false
     script.Parent.Main.TopbarZone.Visible = false
     
-    tweenService:Create(script.Parent.UIAspectRatioConstraint, TweenInfo.new(1, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {AspectRatio = 1}):Play()
+    tweenService:Create(script.Parent.UIAspectRatioConstraint, TweenInfo.new(0.1, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {AspectRatio = 1}):Play()
     script.Parent:TweenSize(UDim2.fromScale(0.01, 0.01), Enum.EasingDirection.In, Enum.EasingStyle.Sine, 1, true)
     
-    task.wait(1)
+    task.wait(0.1)
     
     script.Parent.Visible = false
 
@@ -12821,19 +12821,19 @@ local function maximize()
     script.Parent.Main.TopbarZone.Visible = false
 
     script.Parent:TweenSize(UDim2.fromScale(oldSize.X.Scale * (settings.Window_scale / 100), oldSize.Y.Scale * (settings.Window_scale / 100)), Enum.EasingDirection.Out, Enum.EasingStyle.Sine, 1, true)
-    tweenService:Create(script.Parent.Main, TweenInfo.new(0.75), {BackgroundTransparency = 0}):Play()
+    tweenService:Create(script.Parent.Main, TweenInfo.new(0.1), {BackgroundTransparency = 0}):Play()
 
-    task.wait(1)
+    task.wait(0.1)
 
-    tweenService:Create(script.Parent.UIAspectRatioConstraint, TweenInfo.new(1.25, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {AspectRatio = oldRatio}):Play()
+    tweenService:Create(script.Parent.UIAspectRatioConstraint, TweenInfo.new(0.1, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {AspectRatio = oldRatio}):Play()
 
-    task.wait(0.35)
+    task.wait(0.1)
 
     script.Parent.Main.Contents.Visible = true
     script.Parent.Main.TopbarZone.Visible = true
     script.Parent.Main.Overlay.Visible = true
 
-    tweenService:Create(script.Parent.Main.Overlay, TweenInfo.new(2), {BackgroundTransparency = 1}):Play()
+    tweenService:Create(script.Parent.Main.Overlay, TweenInfo.new(0.1), {BackgroundTransparency = 1}):Play()
 
     isMinimized = false
     cooldown = false
