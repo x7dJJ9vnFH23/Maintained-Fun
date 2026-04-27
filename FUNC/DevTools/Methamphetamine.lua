@@ -12025,7 +12025,7 @@ return function(shared, page)
                 if not block[self] and not block[self.Name] then
                     local got = shared:AddObject({ })
                     if callcheck() then
-                        addLogToStack(self, false, cllr or getcaller(), args, got)
+                        addLogToStack(self, false, args, cllr or getcaller(), got)
                     end
 
                     append(got, { old(self, unpack(args)) })
@@ -12033,7 +12033,7 @@ return function(shared, page)
                     return unpack(got[1])
                 else
                     if callcheck() then
-                        addLogToStack(self, false, cllr or getcaller(), args, nil)
+                        addLogToStack(self, false, args, cllr or getcaller(), nil)
                     end
                 end
             end)
