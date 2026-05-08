@@ -2483,26 +2483,26 @@ local Presets = {
     {
         Name = "Crimson (Default)";
         Colors = {
-            Background = Color3.fromRGB(15, 15, 17);
-            Window = Color3.fromRGB(20, 20, 23);
-            TitleBar = Color3.fromRGB(13, 13, 15);
-            Border = Color3.fromRGB(34, 34, 38);
-            BorderSoft = Color3.fromRGB(26, 26, 30);
-            Field = Color3.fromRGB(28, 28, 32);
+            Background = Color3.fromRGB(45, 45, 45);
+            Window = Color3.fromRGB(45, 45, 45);
+            TitleBar = Color3.fromRGB(52, 52, 52);
+            Border = Color3.fromRGB(33, 33, 33);
+            BorderSoft = Color3.fromRGB(27, 42, 53);
+            Field = Color3.fromRGB(45, 45, 45);
             FieldHover = Color3.fromRGB(36, 36, 42);
-            Selected = Color3.fromRGB(56, 36, 38);
-            SelectionBar = Color3.fromRGB(232, 55, 55);
-            Text = Color3.fromRGB(232, 232, 236);
-            TextDim = Color3.fromRGB(150, 150, 160);
-            TextFaded = Color3.fromRGB(110, 110, 120);
-            TextHeader = Color3.fromRGB(120, 120, 130);
-            Accent = Color3.fromRGB(232, 55, 55);
-            PropString = Color3.fromRGB(255, 170, 130);
-            PropNumber = Color3.fromRGB(255, 120, 130);
-            PropInstance = Color3.fromRGB(255, 140, 150);
-            PropEnum = Color3.fromRGB(220, 200, 140);
+            Selected = Color3.fromRGB(0, 122, 255);
+            SelectionBar = Color3.fromRGB(0, 122, 255);
+            Text = Color3.fromRGB(255, 255, 255);
+            TextDim = Color3.fromRGB(255, 255, 255);
+            TextFaded = Color3.fromRGB(255, 255, 255);
+            TextHeader = Color3.fromRGB(255, 255, 255);
+            Accent = Color3.fromRGB(0, 122, 255);
+            PropString = Color3.fromRGB(255, 255, 255);
+            PropNumber = Color3.fromRGB(255, 255, 255);
+            PropInstance = Color3.fromRGB(255, 255, 255);
+            PropEnum = Color3.fromRGB(255, 255, 255);
             PropNil = Color3.fromRGB(120, 120, 120);
-            PropDefault = Color3.fromRGB(220, 220, 220);
+            PropDefault = Color3.fromRGB(255, 255, 255);
         }
     };
 
@@ -2771,11 +2771,12 @@ function VexUI:CreateWindow(Config)
         Size = Size;
         Position = Position;
         BackgroundColor3 = Theme.Window;
+        BackgroundTransparency = 0.2;
         BorderSizePixel = 0;
         ClipsDescendants = true;
         Parent = Parent;
     })
-    self:AddCorner(Window, 8)
+    self:AddCorner(Window, 0)
     local WindowStroke = self:AddStroke(Window, Theme.Border, 1)
     BindTheme("Window", function(Color)
         Window.BackgroundColor3 = Color
@@ -2792,7 +2793,7 @@ function VexUI:CreateWindow(Config)
         BorderSizePixel = 0;
         Parent = Window;
     })
-    self:AddCorner(TitleBar, 8)
+    self:AddCorner(TitleBar, 0)
     BindTheme("TitleBar", function(Color)
         TitleBar.BackgroundColor3 = Color
     end)
@@ -7118,7 +7119,7 @@ function Explorer:CreateModalWindow(Title, Width, Height)
         ZIndex = 201;
         Parent = self.ScreenGui;
     })
-    VexUI:AddCorner(Window, 8)
+    VexUI:AddCorner(Window, 0)
     local WindowStroke = VexUI:AddStroke(Window, Theme.Border, 1)
     BindTheme("Window", function(Color) Window.BackgroundColor3 = Color end)
     BindTheme("Border", function(Color) WindowStroke.Color = Color end)
@@ -7130,7 +7131,7 @@ function Explorer:CreateModalWindow(Title, Width, Height)
         ZIndex = 202;
         Parent = Window;
     })
-    VexUI:AddCorner(TitleBar, 8)
+    VexUI:AddCorner(TitleBar, 0)
     BindTheme("TitleBar", function(Color) TitleBar.BackgroundColor3 = Color end)
 
     local TitleBarCover = VexUI:CreateInstance("Frame", {
@@ -9479,7 +9480,7 @@ function Explorer:OpenScriptViewer(ScriptObject, UseDefault)
         ZIndex = 50;
         Parent = self.ScreenGui;
     })
-    VexUI:AddCorner(Window, 8)
+    VexUI:AddCorner(Window, 0)
     local WindowStroke = VexUI:AddStroke(Window, Theme.Border, 1)
     BindTheme("Window", function(Color)
         Window.BackgroundColor3 = Color
@@ -9499,7 +9500,7 @@ function Explorer:OpenScriptViewer(ScriptObject, UseDefault)
         ZIndex = 51;
         Parent = Window;
     })
-    VexUI:AddCorner(TitleBar, 8)
+    VexUI:AddCorner(TitleBar, 0)
     BindTheme("TitleBar", function(Color)
         TitleBar.BackgroundColor3 = Color
     end)
@@ -11252,7 +11253,7 @@ end
 function Explorer:BuildExplorerWindow()
     local Camera = workspace.CurrentCamera
     local Viewport = Camera and Camera.ViewportSize or Vector2.new(1366, 768)
-    local Width = 360
+    local Width = 300
     local Height = math.min(580, math.floor((Viewport.Y - 40) / 2))
 
     local Window = VexUI:CreateWindow({
@@ -11260,7 +11261,7 @@ function Explorer:BuildExplorerWindow()
         Title = "Explorer";
         Brand = true;
         Size = UDim2.fromOffset(Width, Height);
-        Position = UDim2.fromOffset(Viewport.X - Width, 0);
+        Position = UDim2.fromOffset(Viewport.X - Width, 60);
     })
     self.ExplorerWindow = Window
 
@@ -11324,27 +11325,9 @@ function Explorer:BuildExplorerWindow()
         return Button
     end
 
-    MakeAction("TP - PlaceId", 1, function()
-        pcall(function()
-            Services.TeleportService:Teleport(game.PlaceId, self.LocalPlayer)
-        end)
-    end)
-
-    MakeAction("TP - JobId", 2, function()
-        pcall(function()
-            Services.TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, self.LocalPlayer)
-        end)
-    end)
-
-    MakeAction("Kick Self", 3, function()
-        pcall(function()
-            self.LocalPlayer:Kick("Kicked via VEX Explorer")
-        end)
-    end)
-
     local SearchHolder = VexUI:CreateInstance("Frame", {
         Size = UDim2.new(1, 0, 0, 36);
-        Position = UDim2.new(0, 0, 0, 38);
+        Position = UDim2.new(0, 0, 0, 0);
         BackgroundTransparency = 1;
         Parent = Window.Body;
     })
@@ -11352,7 +11335,7 @@ function Explorer:BuildExplorerWindow()
 
     local TreeHolder = VexUI:CreateInstance("Frame", {
         Size = UDim2.new(1, 0, 1, -74);
-        Position = UDim2.new(0, 0, 0, 74);
+        Position = UDim2.new(0, 0, 0, 37);
         BackgroundTransparency = 1;
         Parent = Window.Body;
     })
@@ -11662,7 +11645,7 @@ end
 function Explorer:BuildPropertiesWindow()
     local Camera = workspace.CurrentCamera
     local Viewport = Camera and Camera.ViewportSize or Vector2.new(1366, 768)
-    local Width = 360
+    local Width = 300
 
     local ExplorerFrame = self.ExplorerWindow and self.ExplorerWindow.Frame
     local TopY = 0
