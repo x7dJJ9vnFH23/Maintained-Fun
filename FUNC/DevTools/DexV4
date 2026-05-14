@@ -14639,7 +14639,7 @@ Main = (function()
 			--warn("No built-in saveinstance exists, using SynSaveInstance and wrapper...")
 			if game:GetService("RunService"):IsStudio() then return function() error("Cannot run in Roblox Studio!") end end
 			local Params = {
-				RepoURL = "https://raw.githubusercontent.com/luau/SynSaveInstance/main/",
+				RepoURL = "https://github.com/BobTheMan5/UniversalSynSaveInstance-TERRAIN/",
 				SSI = "saveinstance",
 			}
 			local synsaveinstance = loadstring(oldgame:HttpGet(Params.RepoURL .. Params.SSI .. ".luau", true), Params.SSI)()
