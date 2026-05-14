@@ -11183,11 +11183,20 @@ local function main()
 	local inputBox,inputTextBox,inputProp
 	local checkboxes,propCons = {},{}
 	local table,string = table,string
+	local tfind = table.find or function(tbl,val)
+		for i = 1,#tbl do
+			if tbl[i] == val then return i end
+		end
+		return nil
+	end
 	local getPropChangedSignal = game.GetPropertyChangedSignal
 	local getAttributeChangedSignal = game.GetAttributeChangedSignal
 	local isa = game.IsA
 	local getAttribute = game.GetAttribute
 	local setAttribute = game.SetAttribute
+	local collectionService = service.CollectionService
+	local getTags = collectionService.GetTags
+	local hasTag = collectionService.HasTag
 
 	Properties.GuiElems = {}
 	Properties.Index = 0
@@ -11428,6 +11437,7 @@ local function main()
 				local typeData = prop.RootType or prop.ValueType
 				local typeName = typeData.Name
 				local attributeName = prop.AttributeName
+				local tagName = prop.TagName
 				local gName = propClass.."."..propName
 
 				local checked = 0
@@ -11439,6 +11449,7 @@ local function main()
 				local ignored = conflictIgnore[propClass] and conflictIgnore[propClass][propName]
 				local truthyCheck = (typeName == "PhysicalProperties")
 				local isAttribute = prop.IsAttribute
+				local isTag = prop.IsTag
 				local isMultiType = prop.MultiType
 
 				t_clear(conflictMap)
@@ -11455,6 +11466,10 @@ local function main()
 									firstObj = obj
 									firstSet = true
 								end
+							elseif isTag then
+								firstVal = hasTag(collectionService,obj,tagName)
+								firstObj = obj
+								firstSet = true
 							else
 								firstVal = obj[propName]
 								firstObj = obj
@@ -11466,6 +11481,8 @@ local function main()
 							if isAttribute then
 								propVal = getAttribute(obj,attributeName)
 								if propVal == nil then skip = true end
+							elseif isTag then
+								propVal = hasTag(collectionService,obj,tagName)
 							else
 								propVal = obj[propName]
 							end
@@ -11544,11 +11561,14 @@ local function main()
 		local getAttributes = game.GetAttributes
 		local maxAttrs = Settings.Properties.MaxAttributes
 		local showingAttrs = Settings.Properties.ShowAttributes
+		local maxTags = Settings.Properties.MaxTags or 50
+		local showingTags = Settings.Properties.ShowTags ~= false
 		local foundAttrs = {}
+		local foundTagNames = {}
 		local attrCount = 0
+		local tagCount = 0
 		local typeof = typeof
 		local typeNameConvert = Properties.TypeNameConvert
-
 		table.clear(props)
 
 		for i = 1,#sList do
@@ -11602,11 +11622,29 @@ local function main()
 					end
 				end
 			end
+
+			if showingTags and tagCount < maxTags then
+				local success,objTags = pcall(getTags,collectionService,obj)
+				if success and type(objTags) == "table" then
+					for i = 1,#objTags do
+						local name = objTags[i]
+						if type(name) == "string" and not tfind(foundTagNames,name) then
+							local tagProp = {IsTag = true, Name = "TAG_"..name, TagName = name, DisplayName = name, Class = "Instance", ValueType = {Name = "bool", Category = "Other"}, Category = "Tags", Tags = {ReadOnly = true}}
+							props[propCount] = tagProp
+							propCount = propCount + 1
+							tagCount = tagCount + 1
+							foundTagNames[#foundTagNames+1] = name
+							if tagCount == maxTags then break end
+						end
+					end
+				end
+			end
 		end
 
+		local categoryOrderMap = categoryOrder or {}
 		table.sort(props,function(a,b)
 			if a.Category ~= b.Category then
-				return (categoryOrder[a.Category] or 9999) < (categoryOrder[b.Category] or 9999)
+				return (categoryOrderMap[a.Category] or 9999) < (categoryOrderMap[b.Category] or 9999)
 			else
 				local aOrder = (RMDCustomOrders[a.Class] and RMDCustomOrders[a.Class][a.Name]) or 9999999
 				local bOrder = (RMDCustomOrders[b.Class] and RMDCustomOrders[b.Class][b.Name]) or 9999999
@@ -11927,7 +11965,14 @@ local function main()
 		end)
 
 		nameFrame.ToggleAttributes.MouseButton1Click:Connect(function()
-			Settings.Properties.ShowAttributes = not Settings.Properties.ShowAttributes
+			local prop = viewList[index + Properties.Index]
+			if prop.CategoryName == "Attributes" then
+				Settings.Properties.ShowAttributes = not Settings.Properties.ShowAttributes
+			elseif prop.CategoryName == "Tags" then
+				Settings.Properties.ShowTags = not Settings.Properties.ShowTags
+			else
+				return
+			end
 			Properties.ShowExplorerProps()
 		end)
 
@@ -12376,6 +12421,8 @@ local function main()
 			elseif prop.ValueType.Name ~= currentType then
 				return nil
 			end
+		elseif prop.IsTag then
+			propVal = hasTag(collectionService,obj,prop.TagName)
 		else
 			propVal = obj[prop.Name]
 		end
@@ -12595,10 +12642,18 @@ local function main()
 						editAttributeButton.Visible = false
 
 						local showingAttrs = Settings.Properties.ShowAttributes
+						local showingTags = Settings.Properties.ShowTags ~= false
 						toggleAttributes.Position = UDim2.new(1,-85-leftOffset,0,0)
-						toggleAttributes.Text = (showingAttrs and "[Setting: ON]" or "[Setting: OFF]")
 						toggleAttributes.TextColor3 = Settings.Theme.Text
-						toggleAttributes.Visible = (prop.CategoryName == "Attributes")
+						if prop.CategoryName == "Attributes" then
+							toggleAttributes.Text = (showingAttrs and "[Setting: ON]" or "[Setting: OFF]")
+							toggleAttributes.Visible = true
+						elseif prop.CategoryName == "Tags" then
+							toggleAttributes.Text = (showingTags and "[Setting: ON]" or "[Setting: OFF]")
+							toggleAttributes.Visible = true
+						else
+							toggleAttributes.Visible = false
+						end
 					else
 						local propName = prop.Name
 						local typeData = prop.ValueType
@@ -12637,6 +12692,8 @@ local function main()
 								propCons[#propCons+1] = getAttributeChangedSignal(propObj,prop.AttributeName):Connect(function()
 									Properties.DisplayProp(prop,i)
 								end)
+							elseif prop.IsTag then
+								
 							else
 								propCons[#propCons+1] = getPropChangedSignal(propObj,propName):Connect(function()
 									Properties.DisplayProp(prop,i)
@@ -12713,6 +12770,11 @@ local function main()
 
 	Properties.SetProp = function(prop,val,noupdate,prevAttribute)
 		local sList = Explorer.Selection.List
+
+		if prop.IsTag then 
+			return 
+		end
+
 		local propName = prop.Name
 		local subName = prop.SubName
 		local propClass = prop.Class
@@ -14004,6 +14066,10 @@ local function main()
 		showAttributes.OnInput:Connect(function()
 			Settings.Properties.ShowAttributes = showAttributes.Toggled
 		end)
+		local showTags = AddCheckbox("Show Tags", Settings.Properties.ShowTags ~= false)
+		showTags.OnInput:Connect(function()
+			Settings.Properties.ShowTags = showTags.Toggled
+		end)
 		local clearOnFocus = AddCheckbox("Clear On Focus", Settings.Properties.ClearOnFocus)
 		clearOnFocus.OnInput:Connect(function()
 			Settings.Properties.ClearOnFocus = clearOnFocus.Toggled
@@ -14154,6 +14220,8 @@ DefaultSettings = (function()
 			NumberRounding = 3,
 			ShowAttributes = true,
 			MaxAttributes = 50,
+			ShowTags = true,
+			MaxTags = 50,
 			ScaleType = 0 -- 0 Full Name Shown, 1 Equal Halves
 		},
 		Theme = {
@@ -15045,6 +15113,7 @@ Main = (function()
 		insertAbove(categoryOrder,"Character","Controls")
 		categoryOrder[#categoryOrder+1] = "Unscriptable"
 		categoryOrder[#categoryOrder+1] = "Attributes"
+		categoryOrder[#categoryOrder+1] = "Tags"
 
 		local categoryOrderMap = {}
 		for i = 1,#categoryOrder do
