@@ -13162,6 +13162,7 @@ local function main()
 		MaxThreads = 3,
 		ShowStatus = true,
 		IgnoreDefaultProps = true,
+		IgnoreSpecialProperties = false,
 		IsolateStarterPlayer = true
 	}
 	
@@ -13351,7 +13352,7 @@ local function main()
 			SaveInstanceArgs.IgnoreDefaultProps = IgnoreDefaultProps.Toggled
 		end)
 
-		local IgnorSpecialProperties = AddCheckbox("Ignore Special Properties", SaveInstanceArgs.IgnoreDefaultProps)
+		local IgnoreSpecialProperties = AddCheckbox("Ignore Special Properties", SaveInstanceArgs.IgnoreSpecialProperties)
 		IgnoreSpecialProperties.OnInput:Connect(function()
 			SaveInstanceArgs.IgnoreSpecialProperties = IgnoreSpecialProperties.Toggled
 		end)
