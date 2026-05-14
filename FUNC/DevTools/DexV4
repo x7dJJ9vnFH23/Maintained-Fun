@@ -11183,12 +11183,7 @@ local function main()
 	local inputBox,inputTextBox,inputProp
 	local checkboxes,propCons = {},{}
 	local table,string = table,string
-	local tfind = table.find or function(tbl,val)
-		for i = 1,#tbl do
-			if tbl[i] == val then return i end
-		end
-		return nil
-	end
+	local tfind = table.find
 	local getPropChangedSignal = game.GetPropertyChangedSignal
 	local getAttributeChangedSignal = game.GetAttributeChangedSignal
 	local isa = game.IsA
@@ -11629,7 +11624,7 @@ local function main()
 					for i = 1,#objTags do
 						local name = objTags[i]
 						if type(name) == "string" and not tfind(foundTagNames,name) then
-							local tagProp = {IsTag = true, Name = "TAG_"..name, TagName = name, DisplayName = name, Class = "Instance", ValueType = {Name = "bool", Category = "Other"}, Category = "Tags", Tags = {ReadOnly = true}}
+							local tagProp = {IsTag = true, Name = "TAG_"..name, TagName = name, DisplayName = name, Class = "Instance", ValueType = {Name = "bool", Category = "Other"}, Category = "Tags", Tags = {ReadOnly = false}}
 							props[propCount] = tagProp
 							propCount = propCount + 1
 							tagCount = tagCount + 1
