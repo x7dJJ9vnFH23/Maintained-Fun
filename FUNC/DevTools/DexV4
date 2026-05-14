@@ -15575,10 +15575,6 @@ Main = (function()
 
 		--Main.CreateApp({Name = "Secret Service Panel", IconMap = Main.LargeIcons, Icon = "Output", Window = SecretServicePanel.Window})
 		
-		for _, loadedplugin in pairs(Main.Plugins) do
-			Main.CreateApp({Name = loadedplugin.PluginData.FriendlyName, IconMap = Explorer.ClassIcons, Icon = "Attachment", Window = loadedplugin.Window})
-		end
-		
 		Lib.ShowGui(gui)
 	end
 
