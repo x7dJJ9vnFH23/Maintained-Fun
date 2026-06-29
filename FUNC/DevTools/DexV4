@@ -2198,10 +2198,17 @@ local function main()
 			Explorer.InsertObjectContext:Show(x,y)
 		end})
 
-		--[[context:Register("CALL_FUNCTION",{Name = "Call Function", IconMap = Explorer.ClassIcons, Icon = 66, OnClick = function()
-
+		context:Register("CALL_FUNCTION",{Name = "Call Function", IconMap = Explorer.ClassIcons, Icon = 66, OnClick = function()
+			for _, v in ipairs(selection.List) do
+				if v.Obj and v.Obj:IsA("RemoteEvent") then 
+					v.Obj:FireServer()
+				elseif v.Obj and v.Obj:IsA("RemoteFunction") then
+					v.Obj:InvokeServer()
+				end 
+			end
 		end})
 
+		--[[
 		context:Register("GET_REFERENCES",{Name = "Get Lua References", IconMap = Explorer.ClassIcons, Icon = 34, OnClick = function()
 
 		end})]]
