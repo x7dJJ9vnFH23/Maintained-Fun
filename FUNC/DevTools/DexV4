@@ -12291,11 +12291,19 @@ local function main()
 				Properties.SetProp(editor.CurrentProp,BrickColor.new(col))
 			end)
 
-			editor.OnMoreColors:Connect(function() -- TODO: Special Case BasePart.BrickColor to BasePart.Color
+			editor.OnMoreColors:Connect(function()
 				editor:Close()
 				local colProp
+
+				if prop.Name == "BrickColor" then
+					propName = "Color"
+				else
+					propName = prop.Name
+				end
+
+				local propName = property.Name == "BrickColor" and "BrickColor" or "Color"
 				for i,v in pairs(API.Classes.BasePart.Properties) do
-					if v.Name == "Color" then
+					if v.Name == propName then
 						colProp = v
 						break
 					end
