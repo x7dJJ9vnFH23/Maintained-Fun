@@ -1778,9 +1778,11 @@ local function main()
 		
 		if presentClasses["RemoteEvent"] then context:AddRegistered("BLOCK_REMOTE", env.hookfunction == nil) end
 		if presentClasses["RemoteEvent"] then context:AddRegistered("UNBLOCK_REMOTE", env.hookfunction == nil) end
+		if presentClasses["RemoteEvent"] then context:AddRegistered("CALL_FUNCTION") end
 		
 		if presentClasses["RemoteFunction"] then context:AddRegistered("BLOCK_REMOTE", env.hookfunction == nil) end
 		if presentClasses["RemoteFunction"] then context:AddRegistered("UNBLOCK_REMOTE", env.hookfunction == nil) end
+		if presentClasses["RemoteFunction"] then context:AddRegistered("CALL_FUNCTION") end
 
 		if presentClasses["UnreliableRemoteEvent"] then context:AddRegistered("BLOCK_REMOTE", env.hookfunction == nil) end
 		if presentClasses["UnreliableRemoteEvent"] then context:AddRegistered("UNBLOCK_REMOTE", env.hookfunction == nil) end
@@ -2041,7 +2043,7 @@ local function main()
 						if Obj.PrimaryPart.CanCollide then
 							plr.Character:MoveTo(Obj.PrimaryPart.Position)
 						else
-							plrRP.CFrame = CFrame.new(Obj:GetPivot().Position)
+							plr.Character:PivotTo(Obj:GetPivot() * CFrame.new(0, 5, 0))
 						end
 						break
 					else
