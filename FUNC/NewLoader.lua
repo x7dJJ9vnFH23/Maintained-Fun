@@ -15,6 +15,7 @@ local scripts = {
     [135911818477576] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/refs/heads/main/FUNC/Games/Shoot%20For%20Eggs.lua",
     [107646426076756] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/refs/heads/main/FUNC/Games/Build%20A%20Ring%20Farm.lua",
     [130422569332103] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/refs/heads/main/FUNC/Games/BCB.lua",
+    [70733580049633] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/refs/heads/main/FUNC/Games/Wash%20The%20Car.lua",
     [107535308163741] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/refs/heads/main/FUNC/Games/Huss%20Valley.lua",
     [122245938604556] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/refs/heads/main/FUNC/Games/%2B1%20Tongue%20Escape",
     [112233638491976] = "https://raw.githubusercontent.com/x7dJJ9vnFH23/Maintained-Fun/refs/heads/main/FUNC/Games/Unbox%20ASMR",
